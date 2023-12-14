@@ -1,0 +1,33 @@
+//profiles: prod: {
+//image: images.prod.image
+//}
+
+services: db: {
+	//image: args.image
+	build: {
+		context:   "../"
+		acornfile: "Acornfile"
+	}
+}
+
+containers: {
+	app: {
+		build: {
+			context:    "."
+			dockerfile: "./Dockerfile"
+			target:     "dev"
+		}
+		consumes: ["db"]
+		ports: publish: "8000/http"
+		env: {
+			DB_HOST:  "@{service.db.address}"
+			DB_NAME:  "@{service.db.data.dbName}"
+			DB_PROTO: "@{service.db.data.proto}"
+			DB_USER:  "@{service.db.secrets.user.username}"
+			DB_PASS:  "@{service.db.secrets.user.password}"
+		}
+	}
+}
+
+//images: dev: image:  "ghcr.io/acorn-io/mongodb:v#.#-#"
+//images: prod: image: "ghcr.io/cloudnautique/mongodb-generic:v#.#.#"

@@ -1,0 +1,62 @@
+services: mongo: {
+	generated: job: "create"
+	default: true
+}
+
+jobs: create: {
+	image: "alpine"
+	env: {
+		"secret://config": ""
+	}
+	dirs: {
+		"/acorn/scripts": "./scripts"
+	}
+	entrypoint: ["/acorn/scripts/render.sh"]
+}
+
+secrets: user: {
+	type: "generated"
+	params: job: "create"
+}
+
+secrets: admin: {
+	type: "generated"
+	params: job: "create"
+}
+
+secrets: config: {
+	type: "credential.acorn.io/mongodb"
+	params: {
+		instructions: localData.instructions
+		promptOrder: ["proto", "address", "port", "adminUsername", "adminPassword", "username", "password"]
+	}
+	data: {
+		address:       ""
+		port:          ""
+		username:      ""
+		password:      ""
+		adminUsername: ""
+		adminPassword: ""
+		proto:         ""
+		dbName:        ""
+	}
+}
+
+localData: instructions: """
+    ## Overview
+
+    This will create the service from an existing MongoDB so that it can be swapped with the MongoDB container service.
+
+    ## Instructions
+
+    fill in:
+    
+    - address: the address of the MongoDB server (mongo.example.com)
+    - port: the port of the MongoDB server (27017)
+    - username: the username to use to connect to the MongoDB server
+    - password: the password to use to connect to the MongoDB server
+    - adminUsername: the username to use to connect to the MongoDB server as an admin
+    - adminPassword: the password to use to connect to the MongoDB server as an admin
+    - proto: the protocol to use to connect to the MongoDB server (mongodb or mongodb+srv)
+    - dbName: the name of the database to use 
+    """
