@@ -43,20 +43,20 @@ secrets: config: {
 }
 
 localData: instructions: """
-    ## Overview
-
-    This will create the service from an existing MongoDB so that it can be swapped with the MongoDB container service.
-
-    ## Instructions
-
-    fill in:
-    
-    - address: the address of the MongoDB server (mongo.example.com)
-    - port: the port of the MongoDB server (27017)
-    - username: the username to use to connect to the MongoDB server
-    - password: the password to use to connect to the MongoDB server
-    - adminUsername: the username to use to connect to the MongoDB server as an admin
-    - adminPassword: the password to use to connect to the MongoDB server as an admin
-    - proto: the protocol to use to connect to the MongoDB server (mongodb or mongodb+srv)
-    - dbName: the name of the database to use 
-    """
+  ## Overview
+  
+  This will create the service from an existing MongoDB so that it can be swapped with the MongoDB container service.
+  
+  ## Instructions
+  
+  fill in:
+  
+  - address: the address of the MongoDB server (mongo.example.com)
+  - port: the port of the MongoDB server (27017)
+  - username: the username to use to connect to the MongoDB server
+  - password: the password to use to connect to the MongoDB server
+  - adminUsername: the username to use to connect to the MongoDB server as an admin
+  - adminPassword: the password to use to connect to the MongoDB server as an admin
+  - proto: the protocol to use to connect to the MongoDB server (mongodb or mongodb+srv)
+  - dbName: the name of the database to use 
+  """
