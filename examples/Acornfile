@@ -1,13 +1,5 @@
-//profiles: prod: {
-//image: images.prod.image
-//}
-
 services: db: {
-	//image: args.image
-	build: {
-		context:   "../"
-		acornfile: "Acornfile"
-	}
+	image: "ghcr.io/acorn-io/mongodb-external:v#.#.#"
 }
 
 containers: {
@@ -28,6 +20,3 @@ containers: {
 		}
 	}
 }
-
-//images: dev: image:  "ghcr.io/acorn-io/mongodb:v#.#-#"
-//images: prod: image: "ghcr.io/cloudnautique/mongodb-generic:v#.#.#"
