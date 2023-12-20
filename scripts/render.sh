@@ -5,7 +5,7 @@ services: mongo: {
   address: "${address}"
   default: true
   secrets: ["admin", "user"]
-  ports: "${port}"
+  ports: "27017:${port}"
   data: {
     proto: "${proto}"
     dbName: "${dbName}"
