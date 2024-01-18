@@ -1,3 +1,8 @@
+name:        "External MongoDB Database"
+description: "Creates an Acorn service to connect to an external MongoDB database."
+readme:      "./README.md"
+info:        localData.info
+
 services: mongo: {
 	generated: job: "create"
 	default: true
@@ -59,4 +64,26 @@ localData: instructions: """
   - adminPassword: the password to use to connect to the MongoDB server as an admin
   - proto: the protocol to use to connect to the MongoDB server (mongodb or mongodb+srv)
   - dbName: the name of the database to use 
+
   """
+
+localData: info: """
+## Usage
+
+services: db: {
+	image: "ghcr.io/acorn-io/mongodb-external:v#.#.#"
+}
+
+containers: app: {
+	image: "app-image"
+	env: {
+	  DB_HOST: "@{@{service.}db.address}"
+	  DB_PORT: "@{@{service.}db.port.27017}"
+	  DB_NAME: "@{@{service.}db.data.dbName}"
+	  DB_USER: "@{@{service.}db.secrets.user.username}"
+	  DB_PASS: "@{@{service.}db.secrets.user.password}"
+	  DB_ADMIN_USER: "@{@{service.}db.secrets.admin.username}"
+	  DB_ADMIN_PASS: "@{@{service.}db.secrets.admin.password}"
+	}
+}
+"""
