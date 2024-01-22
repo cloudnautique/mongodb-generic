@@ -33,16 +33,16 @@ secrets: config: {
 	type: "credential.acorn.io/mongodb"
 	params: {
 		instructions: localData.instructions
-		promptOrder: ["proto", "address", "port", "adminUsername", "adminPassword", "username", "password"]
+		promptOrder: ["proto", "address", "port", "dbName", "adminUsername", "adminPassword", "username", "password"]
 	}
 	data: {
 		address:       ""
-		port:          ""
+		port:          "27017"
 		username:      ""
 		password:      ""
 		adminUsername: ""
 		adminPassword: ""
-		proto:         ""
+		proto:         "mongodb+srv"
 		dbName:        ""
 	}
 }
